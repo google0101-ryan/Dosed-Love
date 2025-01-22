@@ -18,8 +18,8 @@ Character A(path/to/portrait.png): "Dialogue A with *formatting*";
 Character B(path/to/portrait2.png): "Dialogue B with **bold**";
 
 Choice(
-    ChoiceA(SetVar("DidChoseA", 1), LoadDiag("path/to/next/tree.dg")),
-    ChoiceB(SetVar("DidChoseB", 1), LoadDiag("path/to/next/tree2.dg"))
+    Choice "I choose A"(SetVar("DidChoseA", 1), LoadDiag("path/to/next/tree.dg")),
+    Choice "I choose B"(SetVar("DidChoseB", 1), LoadDiag("path/to/next/tree2.dg"))
 );
 ```
 
@@ -40,3 +40,75 @@ Inside of the parenthesis goes the path to the character portrait to appear on-s
 #### <span style="color: red">TODO</span>: Add left/right/center align options
 
 Following that, you must use a colon to indicate the start of spoken dialogue. Everything inside of the following quotation marks will be displayed inside of the text box. Formatting rules are described in [Formatting.md](Formatting.md).
+
+#### <span style="color: red">TODO</span>: Write Formatting.md
+
+#### <span style="color: red">TODO</span>: Add timing options
+
+Example dialogue:
+
+```
+Jane Doe(Portraits/JaneDoe.png): "Hi, what's your name?"
+```
+
+## Decision Trees
+
+What would a visual novel be without player choices? We have two options here: load a new dialogue tree, or save data to a variable (will be written to disk).
+
+Choice trees begin with the `Choice` keyword, followed by the choice text in quotes (this is displayed as a bulleted list).
+
+For example:
+```
+Choice "I choose A!"(...)
+
+Choice "I choose B!"(...)
+```
+would appear as
+```
++/P̅L̅A̅Y̅E̅R̅\-----------------+
+|  1. I choose A!         |
+|  2. I choose B!         |
++-------------------------+
+```
+
+Inside of the parenthesis is a comma-seperated list of items, each being a keyword.
+
+#### Choice keywords
+
+Inside of the comma-seperated list of choices, each one must consist of one of the following keywords first:
+
+- `SetVar`
+- `LoadTree`
+
+These will be described in more detail below.
+
+#### SetVar:
+
+The `SetVar` keyword will create a variable that is saved to disk, which can then be referenced later by the engine.
+
+Usage:  
+`SetVar(varName, value)`
+
+`varName`: ASCII string name the variable will be referenced by. Must be quoted.  
+`value`: Any number, string, or boolean that will be saved to the variable.
+
+Example:  
+```
+SetVar("ExampleVar", "This is an example Var");
+SetVar("ExampleBooleanVar", false);
+SetVar("ExampleIntVar", 100);
+```
+
+#### LoadTree:
+
+The `LoadTree` keyword will load a new dialogue file and begin executing it. Used for branching paths in dialogue.
+
+Usage:
+`LoadTree(path)`
+
+`path`: Path relative to the `Assets` folder in the game's install location.
+
+Example:
+```
+LoadTree(Dialogue/tree.dg)
+```
