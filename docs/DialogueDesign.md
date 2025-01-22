@@ -18,8 +18,8 @@ Character A(path/to/portrait.png): "Dialogue A with *formatting*";
 Character B(path/to/portrait2.png): "Dialogue B with **bold**";
 
 Choice(
-    Choice "I choose A"(SetVar("DidChoseA", 1), LoadDiag("path/to/next/tree.dg")),
-    Choice "I choose B"(SetVar("DidChoseB", 1), LoadDiag("path/to/next/tree2.dg"))
+    "I choose A"(SetVar("DidChoseA", 1), LoadDiag("path/to/next/tree.dg")),
+    "I choose B"(SetVar("DidChoseB", 1), LoadDiag("path/to/next/tree2.dg"))
 );
 ```
 

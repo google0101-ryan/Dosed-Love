@@ -1,0 +1,12 @@
+DIAG
+
+Jane Doe(Portraits/JaneDoe.png) "Hello, what's your name?"
+
+John Doe(Portraits/JohnDoe.png) "John Doe, ma'am. And yours?"
+
+Jane Doe(Portraits/JaneDoe.png) "Jane. It's funny, we have the same last name."
+
+Choice(
+    "*Laugh akwardly*"(SetVar("DidLaughAkwardly", true), LoadTree(Dialogue/JohnNervousLaugh.dg)),
+    "That's so cool!"(SetVar("DidStartConvo", true), LoadTree(Dialogue/JohnNotAnIntrovert.dg)),
+)
