@@ -17,6 +17,9 @@ Character A(path/to/portrait.png): "Dialogue A with *formatting*";
 
 Character B(path/to/portrait2.png): "Dialogue B with **bold**";
 
+TimedChoice(5,
+    "I choose quickly"(SetVar("DidChoseQuickly", 1), LoadDiag("path/to/next/tree_quickly.dg")))
+
 Choice(
     "I choose A"(SetVar("DidChoseA", 1), LoadDiag("path/to/next/tree.dg")),
     "I choose B"(SetVar("DidChoseB", 1), LoadDiag("path/to/next/tree2.dg"))
@@ -99,6 +102,19 @@ SetVar("ExampleBooleanVar", false);
 SetVar("ExampleIntVar", 100);
 ```
 
+
+#### AddVar:
+
+`AddVar` will add one to a pre-existing variable. Previously uncreated variables will be initialized to 0.
+
+Usage:
+`AddVar(varName amount)`
+
+`varName`: The name of the variable to modify
+`amount`: A positive or negative amount to modify the variable by
+
+#### <span style="color: yellow">NOTE</span>: Trying to use this on a string or boolean will throw an error in the log, and execution will continue as normal, skipping the modification.
+
 #### LoadTree:
 
 The `LoadTree` keyword will load a new dialogue file and begin executing it. Used for branching paths in dialogue.
@@ -112,3 +128,7 @@ Example:
 ```
 LoadTree(Dialogue/tree.dg)
 ```
+
+## TimedChoice
+
+Exactly the same as the `Choice` keyword, except the first argument is a number, in seconds, the user has to answer. Failure to answer in the given time frame will continue execution below.
